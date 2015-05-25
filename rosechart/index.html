@@ -1,0 +1,56 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="highcharts.js"></script>
+<script type="text/javascript" src="highcharts-more.js"></script>
+<script type="text/javascript" src="rosechart.js"></script>
+<script type="text/javascript" src="exporting.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<div id="container" style="width: 440px; min-height: 400px; margin: 0 auto"></div>
+<script>
+  epiPadding = 20;
+  var roseOptions = rosechartOptions();
+      roseOptions.xAxis.categories.push('Health Impacts');
+
+    roseOptions.series[0].data.push({color: issueColors['EHHI'],
+      y: 100+epiPadding});
+      roseOptions.xAxis.categories.push('Air Quality');
+
+    roseOptions.series[0].data.push({color: issueColors['EHAIR'],
+      y: 98.33+epiPadding});
+      roseOptions.xAxis.categories.push('Water & Sanitation');
+
+    roseOptions.series[0].data.push({color: issueColors['EHWS'],
+      y: 100+epiPadding});
+      roseOptions.xAxis.categories.push('Water Resources');
+
+    roseOptions.series[0].data.push({color: issueColors['EVWAT'],
+      y: 92.33+epiPadding});
+      roseOptions.xAxis.categories.push('Agriculture');
+
+    roseOptions.series[0].data.push({color: issueColors['EVAG'],
+      y: 66.46+epiPadding});
+      roseOptions.xAxis.categories.push('Forests');
+
+    roseOptions.series[0].data.push({color: issueColors['EVFOR'],
+      y: 100+epiPadding});
+      roseOptions.xAxis.categories.push('Fisheries');
+
+    roseOptions.series[0].data.push({color: issueColors['EVFISH'],
+      y: 19.37+epiPadding});
+      roseOptions.xAxis.categories.push('Biodiversity & Habitat');
+
+    roseOptions.series[0].data.push({color: issueColors['EVBH'],
+      y: 83.08+epiPadding});
+      roseOptions.xAxis.categories.push('Climate & Energy');
+
+    roseOptions.series[0].data.push({color: issueColors['EVCLIM'],
+      y: 47.67+epiPadding});
+  
+    roseOptions.chart.renderTo = 'container';
+    roseOptions.yAxis.max = 100 + epiPadding;
+    roseOptions.tooltip.formatter = function() {
+          return '<b>' + this.x + ':</b> '+ (this.y - epiPadding).toFixed(2);
+      };
+    roseOptions.title = {align: "left", useHTML: true,
+                        text: '<div class="overall"><div class="info-box-label">Issue Score</div><div class="info-box-sub-label">For 9 Core Issues</div></div>'};
+  var chart = new Highcharts.Chart(roseOptions);
+</script>
